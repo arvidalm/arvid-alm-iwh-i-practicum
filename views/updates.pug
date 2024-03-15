@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Custom Object Form | Integrating With HubSpot I Practicum</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
- <h1>Update Custom Object Data</h1>
-    <form action="/update-cobj" method="POST">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="breed">Breed:</label>
-            <input type="text" id="breed" name="breed" required>
-        </div>
-        <div>
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
-        </div>
-        <div>
-            <input type="submit" value="Submit">
-        </div>
-    </form>
-    <a href="/">Return to the homepage</a>
-</body>
-</html>
+doctype html
+html(lang="en")
+  head
+    title= title
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Update Custom Object Data
+    form(action="/update-cobj", method="POST")
+      div
+        label(for="name") Name:
+        input(type="text", id="name", name="name", required=true)
+      div
+        label(for="breed") Breed:
+        input(type="text", id="breed", name="breed", required=true)
+      div
+        label(for="age") Age:
+        input(type="number", id="age", name="age", required=true)
+      div
+        input(type="submit", value="Submit")
+    a(href="/") Return to the homepage

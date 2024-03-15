@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    title Home Page | Integrating With HubSpot I Practicum
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Custom Objects List
+    a(href="/update-cobj") Add to this table
+    if customObjectData.length > 0
+      table
+        thead
+          tr
+            th Name
+            th Breed
+            th Age
+        tbody
+          each dog in customObjectData
+            tr
+              td= dog.properties.Name
+              td= dog.properties["Dog Breed"]
+              td= dog.properties.Age
+    else
+      p No custom objects found.
