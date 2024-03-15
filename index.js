@@ -57,6 +57,18 @@ app.post('/update-cobj', async (req, res)=> {
             "Age": age
         }
     };
+    const dogs = 'https://api.hubspot.com/crm/v3/objects/dogs';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+    try {
+        await axios.post(dogs, newDogData, {headers});
+        res.redirect('/')
+    } catch (error) {
+        console.error(error);
+        res.send("An error occurred while creating the record.");
+    }
 })
 
 /**
