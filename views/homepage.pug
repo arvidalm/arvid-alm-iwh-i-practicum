@@ -1,8 +1,7 @@
-
 doctype html
 html
     head
-        title= `${title}`
+        title= title
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body
@@ -12,10 +11,8 @@ html
             .cards
                 each dog in dogsData
                     .card
-
-                        h2.card__email #{dog.properties.name}
-                        h2.card__email #{dog.properties.breed}
-                        h2.card__email #{dog.properties.age}
+                        h2.card Name: #{dog.properties.name}
+                        h2.card Breed: #{dog.properties.breed}
+                        h2.card Age: #{dog.properties.age}
         else
             p No custom objects found.
-        .cards

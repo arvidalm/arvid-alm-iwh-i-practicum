@@ -23,7 +23,15 @@ app.get('/', async (req, res) => {
     }
     try {
         const response = await axios.get(dogs, { headers })
-        const dogsData = response.data.results
+        const dogsData = response.data.results.map(dog => {
+            return {
+                properties: {
+                    name: dog.name, 
+                    breed: dog.breed,
+                    age: dog.age
+                }
+            }
+        });
         console.log(dogsData)
         res.render('homepage', { title: 'Home | CRM Records', dogsData })
     } catch (error) {
