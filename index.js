@@ -17,7 +17,7 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS
 
 //rewrite get call to maybe make it work please
 app.get('/', async (req, res) => {
-    const dogsEndpoint = 'https://api.hubspot.com/crm/v3/objects/dogs';
+    const dogsEndpoint = 'https://api.hubspot.com/crm/v3/objects/2-125084252?properties=age,name,breed';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
@@ -25,7 +25,16 @@ app.get('/', async (req, res) => {
     try {
         const response = await axios.get(dogsEndpoint, { headers });
 
-        const dogsData = response.data.results;
+        const dogsData = response.data.results.map(dog => {
+            const properties = dog.properties;
+            return {
+                properties: {
+                    name: properties.name,
+                    breed: properties.breed,
+                    age: properties.age
+                }
+            };
+        });
         console.log(dogsData);
         res.render('homepage', { title: 'Home | CRM Records', dogsData });
     } catch (error) {
@@ -42,8 +51,8 @@ app.get('/update-cobj', (req, res) => {
     // rendera uppdatera data
     res.render('updates', {
         title: 'Update Custom Object Form | Integrating With HubSpot I Practicum'
-    });
-});
+    })
+})
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
