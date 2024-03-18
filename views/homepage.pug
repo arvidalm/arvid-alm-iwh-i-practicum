@@ -1,18 +1,18 @@
 doctype html
 html
-    head
-        title= title
-        meta(name="viewport" content="width=device-width, initial-scale=1")
-        link(rel="stylesheet", href="/css/style.css")
-    body
-        h1 Dogs
-        a(href="/update-cobj") Add to this table
-        if dogsData && dogsData.length
-            .cards
-                each dog in dogsData
-                    .card
-                        h2.card Name: #{dog.properties.name}
-                        h2.card Breed: #{dog.properties.breed}
-                        h2.card Age: #{dog.properties.age}
-        else
-            p No custom objects found.
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Dogs
+    a(href="/update-cobj") Add to this table
+    if dogsData && dogsData.length
+      .cards
+        each dog in dogsData
+          .card
+            h2.card__name Name: #{dog.properties.name}
+            h2.card__breed Breed: #{dog.properties.breed}
+            h2.card__age Age: #{dog.properties.age}
+    else
+      p No custom objects found.

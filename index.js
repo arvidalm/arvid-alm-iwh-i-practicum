@@ -15,30 +15,24 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS
 
 // * Code for Route 1 goes here
 
+//rewrite get call to maybe make it work please
 app.get('/', async (req, res) => {
-    const dogs = 'https://api.hubspot.com/crm/v3/objects/dogs'
+    const dogsEndpoint = 'https://api.hubspot.com/crm/v3/objects/dogs';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
-    }
+    };
     try {
-        const response = await axios.get(dogs, { headers })
-        const dogsData = response.data.results.map(dog => {
-            return {
-                properties: {
-                    name: dog.name, 
-                    breed: dog.breed,
-                    age: dog.age
-                }
-            }
-        });
-        console.log(dogsData)
-        res.render('homepage', { title: 'Home | CRM Records', dogsData })
+        const response = await axios.get(dogsEndpoint, { headers });
+
+        const dogsData = response.data.results;
+        console.log(dogsData);
+        res.render('homepage', { title: 'Home | CRM Records', dogsData });
     } catch (error) {
-        console.error(error)
-        res.send('An error occurred while fetching the records.')
+        console.error(error);
+        res.send('An error occurred while fetching the records.');
     }
-})
+});
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
@@ -48,8 +42,8 @@ app.get('/update-cobj', (req, res) => {
     // rendera uppdatera data
     res.render('updates', {
         title: 'Update Custom Object Form | Integrating With HubSpot I Practicum'
-    })
-})
+    });
+});
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
